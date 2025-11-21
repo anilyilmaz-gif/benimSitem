@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Anıl - Kişisel Web Sitesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Anıl'ın kişisel web sitesi, portföyü ve özgeçmişi.">
+    <style>
+        :root {
+            --bg: #070b12;
+            --bg-soft: #0e1420;
+            --bg-softer: #151c2b;
+            --accent: #4f8cff;
+            --accent-soft: rgba(79,140,255,0.12);
+            --accent-strong: #82b1ff;
+            --text: #f5f7ff;
+            --text-soft: #a8b2d1;
+            --border-subtle: rgba(255,255,255,0.06);
+            --danger: #ff4f6b;
+            --success: #35d49b;
+            --shadow-soft: 0 18px 45px rgba(0,0,0,0.45);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+            --radius-pill: 999px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, sans-serif;
+            background: radial-gradient(circle at top, #1e2740 0, #05070b 45%, #02030a 100%);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page-shell {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 18px 18px 60px;
+        }
+
+        /* NAVBAR */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(16px);
+            background: linear-gradient(to bottom,
+            rgba(5,7,14,0.94),
+            rgba(5,7,14,0.85),
+            transparent);
+            margin: -18px -18px 24px;
+            padding: 10px 22px 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo {
+            width: 30px;
+            height: 30px;
+            border-radius: 40%;
+            background: radial-gradient(circle at 20% 0, #ffffff 0, #4f8cff 28%, #121829 72%);
+            box-shadow: 0 0 18px rgba(79,140,255,0.55);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-logo::after {
+            content: "";
+            position: absolute;
+            inset: 10px 6px;
+            border-radius: inherit;
+            border: 1px solid rgba(255,255,255,0.25);
+            opacity: 0.7;
+        }
+
+        .nav-title {
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+
+        .nav-title-main {
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .nav-title-sub {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .nav-link {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            color: var(--text-soft);
+            opacity: 0.9;
+        }
+
+        .nav-link:hover {
+            border-color: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.02);
+            color: var(--text);
+        }
+
+        .nav-link-primary {
+            padding: 6px 12px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(79,140,255,0.7);
+            background: linear-gradient(135deg, rgba(79,140,255,0.4), rgba(43,99,235,0.9));
+            color: #fdfcff;
+            font-weight: 500;
+            box-shadow: 0 0 16px rgba(79,140,255,0.75);
+        }
+
+        .nav-link-primary:hover {
+            filter: brightness(1.05);
+            transform: translateY(-0.5px);
+        }
+
+        .nav-toggle {
+            display: none;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(5,7,14,0.85);
+            width: 34px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .nav-toggle span,
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            display: block;
+            width: 16px;
+            height: 2px;
+            border-radius: 999px;
+            background: #f5f7ff;
+            position: relative;
+        }
+
+        .nav-toggle span::before,
+        .nav-toggle span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+        }
+
+        .nav-toggle span::before {
+            top: -5px;
+        }
+
+        .nav-toggle span::after {
+            top: 5px;
+        }
+
+        /* LAYOUT / CARDS */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+            gap: 22px;
+            margin-top: 14px;
+        }
+
+        .card {
+            background: radial-gradient(circle at top, rgba(79,140,255,0.18) 0, var(--bg-soft) 38%, var(--bg) 100%);
+            border-radius: var(--radius-lg);
+            padding: 20px 20px 18px;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+            rgba(255,255,255,0.07),
+            rgba(255,255,255,0.02),
+            transparent);
+            mix-blend-mode: soft-light;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(1,8,26,0.85);
+            color: var(--text-soft);
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 10px rgba(53,212,155,0.9);
+        }
+
+        .hero-title {
+            font-size: clamp(26px, 3vw, 30px);
+            font-weight: 650;
+            letter-spacing: -0.03em;
+            margin: 2px 0 8px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--text-soft);
+            margin-bottom: 14px;
+        }
+
+        .hero-highlight {
+            font-weight: 500;
+            color: var(--accent-strong);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 14px;
+            border-radius: var(--radius-pill);
+            border: 1px solid transparent;
+            font-size: 13px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text);
+        }
+
+        .btn-primary {
+            border-color: rgba(79,140,255,0.8);
+            background: linear-gradient(135deg, #4f8cff, #3761ff);
+            box-shadow: 0 8px 20px rgba(79,140,255,0.7);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.08);
+            transform: translateY(-0.5px);
+        }
+
+        .btn-ghost {
+            border-color: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.02);
+            color: var(--text-soft);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--text);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .hero-meta-item {
+            padding: 5px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(5,10,26,0.85);
+        }
+
+        .hero-avatar-card {
+            position: relative;
+            display: grid;
+            place-items: center;
+        }
+
+        .hero-avatar-frame {
+            width: 180px;
+            height: 180px;
+            border-radius: 26px;
+            background: radial-gradient(circle at 20% 0, #ffffff 0, #4f8cff 25%, #0b1020 70%);
+            box-shadow:
+                    0 26px 45px rgba(0,0,0,0.7),
+                    0 0 40px rgba(79,140,255,0.75);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.26);
+        }
+
+        .hero-avatar-inner {
+            position: absolute;
+            inset: 12px;
+            border-radius: inherit;
+            border: 1px solid rgba(0,0,0,0.55);
+            background:
+                    linear-gradient(145deg, rgba(0,0,0,0.65), rgba(0,0,0,0.1)),
+                    radial-gradient(circle at 20% 10%, rgba(255,255,255,0.22), transparent 55%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.92);
+        }
+
+        .hero-orbit {
+            position: absolute;
+            inset: -32px;
+            border-radius: 40%;
+            border: 1px dashed rgba(255,255,255,0.18);
+            opacity: 0.7;
+        }
+
+        .hero-chip {
+            position: absolute;
+            font-size: 11px;
+            padding: 6px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(5,8,20,0.94);
+            color: var(--text-soft);
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-chip:nth-child(1) {
+            top: 16px;
+            left: 6px;
+        }
+
+        .hero-chip:nth-child(2) {
+            top: 32px;
+            right: 0;
+        }
+
+        .hero-chip:nth-child(3) {
+            bottom: 24px;
+            left: 8px;
+        }
+
+        .hero-chip span {
+            font-weight: 600;
+            color: var(--accent-strong);
+        }
+
+        /* SECTION WRAPPER */
+        .sections {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.3fr);
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .section-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        .pill {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(6,9,22,0.92);
+            color: var(--text-soft);
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+            font-size: 13px;
+            color: var(--text-soft);
+        }
+
+        .about-grid strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .about-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .about-meta-item {
+            padding: 7px 9px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(2,6,20,0.88);
+            font-size: 11px;
+        }
+
+        .about-meta-label {
+            display: block;
+            color: var(--text-soft);
+        }
+
+        .about-meta-value {
+            font-size: 12px;
+            color: var(--text);
+        }
+
+        /* SKILLS */
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 11px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .chip {
+            padding: 5px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(2,8,23,0.92);
+            color: var(--text-soft);
+        }
+
+        .skill-groups {
+            margin-top: 10px;
+            display: grid;
+            gap: 10px;
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .skill-group-title {
+            font-size: 12px;
+            color: var(--accent-strong);
+            margin-bottom: 3px;
+        }
+
+        .skill-bar {
+            position: relative;
+            width: 100%;
+            height: 5px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .skill-bar-fill {
+            position: absolute;
+            inset: 0;
+            transform-origin: left;
+            background: linear-gradient(90deg, #4f8cff, #35d49b);
+        }
+
+        /* EXPERIENCE / TIMELINE */
+        .timeline {
+            position: relative;
+            margin-top: 6px;
+            padding-left: 10px;
+            border-left: 1px dashed rgba(255,255,255,0.1);
+            font-size: 12px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4f8cff;
+            box-shadow: 0 0 12px rgba(79,140,255,0.9);
+            position: absolute;
+            left: -4.5px;
+            top: 5px;
+        }
+
+        .timeline-role {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .timeline-meta {
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        /* PROJECTS */
+        .project-list {
+            display: grid;
+            gap: 10px;
+            font-size: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project {
+            padding: 9px 10px;
+            border-radius: 11px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: radial-gradient(circle at top left,
+            rgba(79,140,255,0.22),
+            rgba(2,8,23,0.96));
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .project-title {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .project-tag {
+            font-size: 10px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(1,7,20,0.9);
+            color: var(--accent-strong);
+        }
+
+        .project-links {
+            margin-top: 5px;
+            display: flex;
+            gap: 8px;
+            font-size: 11px;
+        }
+
+        .project-link {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            color: var(--accent-strong);
+        }
+
+        /* EDUCATION & CERTS */
+        .list {
+            display: grid;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .list-item-title {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .list-item-meta {
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        /* BLOG PREVIEW */
+        .blog-list {
+            display: grid;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .blog-post {
+            padding: 9px 10px;
+            border-radius: 11px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5,9,22,0.96);
+        }
+
+        .blog-title {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .blog-meta {
+            font-size: 11px;
+            color: var(--text-soft);
+            margin-bottom: 4px;
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: radial-gradient(circle at 10% 10%,
+            rgba(79,140,255,0.5),
+            rgba(5,9,22,0.9));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-label {
+            position: absolute;
+            left: 6px;
+            bottom: 5px;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.6);
+            color: #f5f7ff;
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            font-size: 12px;
+            color: var(--text-soft);
+        }
+
+        .contact-label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-soft);
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .social-link {
+            padding: 5px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(1,7,20,0.94);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 7px;
+            font-size: 12px;
+        }
+
+        .field {
+            display: grid;
+            gap: 4px;
+        }
+
+        .field label {
+            font-size: 11px;
+            color: var(--text-soft);
+        }
+
+        .field input,
+        .field textarea {
+            border-radius: 11px;
+            border: 1px solid rgba(255,255,255,0.16);
+            background: rgba(1,5,18,0.95);
+            padding: 7px 9px;
+            font-family: inherit;
+            font-size: 12px;
+            color: var(--text);
+            outline: none;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            border-color: rgba(79,140,255,0.85);
+            box-shadow: 0 0 0 1px rgba(79,140,255,0.5);
+        }
+
+        .field textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .contact-note {
+            font-size: 10px;
+            color: var(--text-soft);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 26px;
+            font-size: 11px;
+            color: var(--text-soft);
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: radial-gradient(circle at 30% 0, #ffffff 0, #4f8cff 30%, #02030a 85%);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.7);
+            font-size: 15px;
+            color: #fdfcff;
+        }
+
+        .scroll-top.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 860px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-avatar-card {
+                order: -1;
+            }
+
+            .sections {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav {
+                padding-inline: 16px;
+            }
+
+            .nav-links {
+                position: absolute;
+                right: 16px;
+                top: 42px;
+                background: rgba(4,7,15,0.98);
+                border-radius: 14px;
+                border: 1px solid rgba(255,255,255,0.12);
+                padding: 8px 9px;
+                flex-direction: column;
+                align-items: flex-start;
+                min-width: 170px;
+                box-shadow: 0 18px 30px rgba(0,0,0,0.65);
+                display: none;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .nav-link-primary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .page-shell {
+                padding-inline: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <div class="nav-inner">
+        <div class="nav-brand">
+            <div class="nav-logo"></div>
+            <div class="nav-title">
+                <span class="nav-title-main">ANIL • PORTFÖY</span>
+                <span class="nav-title-sub">Geliştirici &amp; Oyuncu</span>
+            </div>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menüyü aç/kapat">
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#about" class="nav-link">Hakkımda</a>
+            <a href="#skills" class="nav-link">Yetenekler</a>
+            <a href="#projects" class="nav-link">Projeler</a>
+            <a href="#experience" class="nav-link">Deneyim</a>
+            <a href="#blog" class="nav-link">Yazılar</a>
+            <a href="#contact" class="nav-link nav-link-primary">İletişim</a>
+        </div>
+    </div>
+</div>
+
+<div class="page-shell">
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="card">
+            <div class="card-header">
+                <div class="badge">
+                    <span class="badge-dot"></span>
+                    <span>Yeni fırsatlara açık</span>
+                </div>
+                <span class="pill">TR / Remote</span>
+            </div>
+            <div style="position: relative; z-index: 1;">
+                <h1 class="hero-title">Merhaba, ben Anıl 👋</h1>
+                <p class="hero-subtitle">
+                    <span class="hero-highlight">Geliştirici, içerik üreten ve oyunlarla uğraşan</span>
+                    çok yönlü bir teknoloji meraklısıyım. Kişisel projeler, Metin2 PVP,
+                    web geliştirme ve üretkenlik odağında çalışıyorum.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        Portföyü Görüntüle
+                    </a>
+                    <a href="#contact" class="btn btn-ghost">
+                        İletişime Geç
+                    </a>
+                </div>
+
+                <div class="hero-meta">
+                    <div class="hero-meta-item">Odak: Oyun sunucuları &amp; Web</div>
+                    <div class="hero-meta-item">Dil: Türkçe / İngilizce (orta)</div>
+                    <div class="hero-meta-item">Konum: Türkiye</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card hero-avatar-card">
+            <div class="hero-orbit"></div>
+            <div class="hero-avatar-frame">
+                <div class="hero-avatar-inner">
+                    AN
+                </div>
+            </div>
+            <div class="hero-chip"><span>+3</span> yıl kişisel projeler</div>
+            <div class="hero-chip"><span>Metin2</span> PVP &amp; server setup</div>
+            <div class="hero-chip"><span>Hedef:</span> Daha profesyonel portföy</div>
+        </div>
+    </section>
+
+    <section class="sections">
+        <!-- SOL SÜTUN: Hakkımda, Projeler, Blog -->
+        <div>
+            <!-- ABOUT -->
+            <section class="card" id="about">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Hakkımda</div>
+                        <div class="section-subtitle">Kısaca kimim, neler yapıyorum?</div>
+                    </div>
+                </div>
+                <div class="about-grid">
+                    <p>
+                        Merhaba, ben <strong>Anıl</strong>. Teknoloji, oyunlar ve internet kültürü ile büyümüş
+                        bir meraklıyım. Özellikle <strong>Metin2 PVP sunucu kurulumu</strong>, oyun altyapıları
+                        ve web tabanlı kişisel projeler üzerine çalışıyorum.
+                    </p>
+                    <p>
+                        Öğrenirken yapmayı, deneyip bozmayı ve sonra daha iyisini kurmayı seviyorum.
+                        Hedefim, hem oyun tarafında hem de web geliştirme alanında kendimi ilerletip
+                        daha <strong>profesyonel ve sürdürülebilir projeler</strong> ortaya koymak.
+                    </p>
+
+                    <div class="about-meta">
+                        <div class="about-meta-item">
+                            <span class="about-meta-label">Rol</span>
+                            <span class="about-meta-value">Geliştirici / Oyun Meraklısı</span>
+                        </div>
+                        <div class="about-meta-item">
+                            <span class="about-meta-label">İlgi Alanları</span>
+                            <span class="about-meta-value">Oyun sunucuları, web, otomasyon</span>
+                        </div>
+                        <div class="about-meta-item">
+                            <span class="about-meta-label">Çalışma Şekli</span>
+                            <span class="about-meta-value">Evden / Remote</span>
+                        </div>
+                        <div class="about-meta-item">
+                            <span class="about-meta-label">Hedef</span>
+                            <span class="about-meta-value">Güçlü kişisel portföy ve profesyonel deneyim</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="card" id="projects">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Projeler</div>
+                        <div class="section-subtitle">Üzerinde çalıştığım / çalışmak istediğim şeyler</div>
+                    </div>
+                    <span class="pill">Örnek portföy</span>
+                </div>
+
+                <div class="project-list">
+                    <article class="project">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">Metin2 PVP Sunucu (Zor Emek)</div>
+                                <div class="timeline-meta">VirtualBox + Windows üzerinde kurulum</div>
+                            </div>
+                            <span class="project-tag">Oyun / Sunucu</span>
+                        </div>
+                        <p>
+                            Klasik Metin2 atmosferini koruyan, zor emek odaklı bir PVP sunucusu. 
+                            Performans optimizasyonu, güvenlik ayarları ve oyuncu deneyimi odaklı
+                            yapılandırma içeriyor.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Launcher / Client (placeholder)</a>
+                            <a href="#" class="project-link">Notlar &amp; Dokümantasyon</a>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">Kişisel Web Portföyü</div>
+                                <div class="timeline-meta">Bu sayfa dahil tüm kişisel site altyapısı</div>
+                            </div>
+                            <span class="project-tag">Web</span>
+                        </div>
+                        <p>
+                            Tek dosyalık, hızlı açılan, mobil uyumlu kişisel web sitesi. Portföy, CV,
+                            blog ve iletişim modüllerini tek sayfada topluyor.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Kaynak kod (eklenecek)</a>
+                        </div>
+                    </article>
+
+                    <article class="project">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-title">Otomasyon &amp; Araçlar</div>
+                                <div class="timeline-meta">Küçük scriptler, yardımcı araçlar</div>
+                            </div>
+                            <span class="project-tag">Araçlar</span>
+                        </div>
+                        <p>
+                            Sunucu yönetimi, yedekleme, log takibi veya oyun içi veri analizi gibi
+                            işleri kolaylaştıran küçük araçlar ve scriptler.
+                        </p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Github (placeholder)</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- BLOG -->
+            <section class="card" id="blog">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Yazılar &amp; Notlar</div>
+                        <div class="section-subtitle">Düşünceler, rehberler ve kısa notlar</div>
+                    </div>
+                    <span class="pill">Kişisel blog alanı</span>
+                </div>
+
+                <div class="blog-list">
+                    <article class="blog-post">
+                        <div class="blog-title">Neden kendi oyun sunucumu kurmak istedim?</div>
+                        <div class="blog-meta">Konu: Metin2, öğrenme süreci, motivasyon</div>
+                        <p>
+                            Oyuncu olarak başladığım yolculuk, zamanla “arka tarafta neler oluyor?”
+                            merakına dönüştü. Kendi sunucumu kurarken öğrendiklerim ve aldığım notlar...
+                        </p>
+                    </article>
+                    <article class="blog-post">
+                        <div class="blog-title">VirtualBox ile pratik geliştirme ortamı kurma</div>
+                        <div class="blog-meta">Konu: Sanallaştırma, test ortamı, güvenlik</div>
+                        <p>
+                            Esas sistemi bozmadan deneme yapmanın en pratik yollarından biri:
+                            sanal makineler. VirtualBox üzerinde Windows / Linux kurarken dikkat ettiğim
+                            ayarlar ve tavsiyeler.
+                        </p>
+                    </article>
+                    <article class="blog-post">
+                        <div class="blog-title">Kişisel projeleri ciddiye almak</div>
+                        <div class="blog-meta">Konu: Motivasyon, disiplin, öğrenme</div>
+                        <p>
+                            Hobi olarak başlayan birçok proje aslında iyi planlanırsa güçlü bir portföye
+                            dönüşebiliyor. Kendi yol haritam ve kendime notlarım...
+                        </p>
+                    </article>
+                </div>
+            </section>
+        </div>
+
+        <!-- SAĞ SÜTUN: Yetenekler, Deneyim, Eğitim, Galeri, İletişim -->
+        <div>
+            <!-- SKILLS -->
+            <section class="card" id="skills">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Yetenekler</div>
+                        <div class="section-subtitle">Teknik &amp; kişisel beceriler</div>
+                    </div>
+                    <span class="pill">Gelişmeye açık</span>
+                </div>
+
+                <div class="chips">
+                    <span class="chip">Oyun sunucuları</span>
+                    <span class="chip">VirtualBox</span>
+                    <span class="chip">Windows yönetimi</span>
+                    <span class="chip">Web temelleri (HTML / CSS)</span>
+                    <span class="chip">Problem çözme</span>
+                    <span class="chip">Araştırma</span>
+                </div>
+
+                <div class="skill-groups">
+                    <div>
+                        <div class="skill-group-title">Oyun &amp; Sunucu</div>
+                        <div>Metin2 PVP, sunucu kurulum mantığı, temel network ayarları</div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-group-title">Web / Yazılım Temelleri</div>
+                        <div>HTML, CSS, basit scriptler ve yapılandırmalar</div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 55%;"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-group-title">Üretkenlik &amp; Öğrenme</div>
+                        <div>Kaynak bulma, deneme–yanılma, kendi kendine öğrenme</div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="card" id="experience">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Deneyim</div>
+                        <div class="section-subtitle">Resmi / kişisel projelerden tecrübeler</div>
+                    </div>
+                    <span class="pill">Zaman içinde güncellenecek</span>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-role">Kişisel Metin2 PVP Sunucu Projesi</div>
+                        <div class="timeline-meta">2024 – devam ediyor · Hobi / Öğrenme odaklı</div>
+                        <p>
+                            Sunucu kurulumu, yapılandırma, client ayarları ve oyun ekonomisi gibi
+                            konularda denemeler. Hedef: stabil, dengeli ve “zor emek” odaklı bir
+                            oyuncu deneyimi.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-role">Kişisel Web &amp; Sistem Deneyimi</div>
+                        <div class="timeline-meta">Çeşitli dönemler · Kendi projelerim</div>
+                        <p>
+                            Sanal makine kurulumu (VirtualBox), Windows üzerinde sunucu testleri,
+                            basit web sayfaları, scriptler ve teknik notlar.
+                        </p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-role">Geleceğe Açık Pozisyon</div>
+                        <div class="timeline-meta">2025+ · Staj / Junior Roller</div>
+                        <p>
+                            Oyun, web veya sistem tarafında, öğrenme isteği yüksek ve sorumluluk
+                            almak isteyen bir aday olarak yeni fırsatlara açığım.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION & CERTS -->
+            <section class="card" id="education">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Eğitim &amp; Sertifikalar</div>
+                        <div class="section-subtitle">Resmi ve gayriresmi öğrenme süreci</div>
+                    </div>
+                    <span class="pill">Özelleştirilebilir alan</span>
+                </div>
+
+                <div class="list">
+                    <div>
+                        <div class="list-item-title">Lise / Üniversite bilgisi</div>
+                        <div class="list-item-meta">
+                            Burayı kendi eğitim geçmişine göre düzenleyebilirsin.
+                        </div>
+                    </div>
+                    <div>
+                        <div class="list-item-title">Online Kurslar &amp; Kaynaklar</div>
+                        <div class="list-item-meta">
+                            YouTube, forumlar, dokümantasyon ve deneme–yanılma ile pratik öğrenme.
+                            Özellikle oyun ve sunucu topluluklarından edinilen tecrübeler.
+                        </div>
+                    </div>
+                    <div>
+                        <div class="list-item-title">Planlanan Sertifikalar</div>
+                        <div class="list-item-meta">
+                            Temel web geliştirme, sistem yönetimi veya ağ temelleri sertifikaları
+                            ile bilginin resmi hale getirilmesi hedefleniyor.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GALLERY -->
+            <section class="card" id="gallery">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">Galeri</div>
+                        <div class="section-subtitle">Ekran görüntüleri &amp; proje görselleri</div>
+                    </div>
+                    <span class="pill">Placeholder alan</span>
+                </div>
+
+                <p style="font-size: 12px; color: var(--text-soft); margin-bottom: 6px;">
+                    Buraya Metin2 sunucundan ekran görüntüleri, web projelerinin görselleri veya
+                    senin için önemli olan başka kareler ekleyebilirsin.
+                </p>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <span class="gallery-label">Metin2 PVP</span>
+                    </div>
+                    <div class="gallery-item">
+                        <span class="gallery-label">Sunucu Konsolu</span>
+                    </div>
+                    <div class="gallery-item">
+                        <span class="gallery-label">Web Projesi</span>
+                    </div>
+                    <div class="gallery-item">
+                        <span class="gallery-label">Yedekleme</span>
+                    </div>
+                    <div class="gallery-item">
+                        <span class="gallery-label">VirtualBox</span>
+                    </div>
+                    <div class="gallery-item">
+                        <span class="gallery-label">Kişisel</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="card" id="contact">
+                <div class="section-title-row">
+                    <div>
+                        <div class="section-title">İletişim</div>
+                        <div class="section-subtitle">Bana nasıl ulaşabilirsin?</div>
+                    </div>
+                    <span class="pill">İş birliği &amp; sohbet</span>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <span class="contact-label">E-posta</span>
+                        <span class="contact-value">ornek.mail@domain.com</span>
+                        <p style="margin-top: 6px;">
+                            Proje önerileri, soru sormak veya sadece sohbet etmek için bana
+                            e-posta gönderebilirsin. Dilersen aşağıdaki formu da kullanabilirsin.
+                        </p>
+
+                        <span class="contact-label">Sosyal</span>
+                        <div class="social-links">
+                            <a href="#" class="social-link">GitHub</a>
+                            <a href="#" class="social-link">LinkedIn</a>
+                            <a href="#" class="social-link">Discord</a>
+                            <a href="#" class="social-link">X (Twitter)</a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Bu form demo amaçlı. Gerçek gönderim için backend eklemen gerekiyor.');">
+                        <div class="field">
+                            <label for="name">İsim</label>
+                            <input id="name" name="name" type="text" placeholder="Adın">
+                        </div>
+                        <div class="field">
+                            <label for="email">E-posta</label>
+                            <input id="email" name="email" type="email" placeholder="mail@orneksite.com">
+                        </div>
+                        <div class="field">
+                            <label for="message">Mesaj</label>
+                            <textarea id="message" name="message" placeholder="Selam Anıl, şunları konuşmak istiyorum..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 4px;">
+                            Mesaj Gönder (Demo)
+                        </button>
+                        <p class="contact-note">
+                            Not: Bu form şu an sadece ön yüz. Gerçekten çalışması için bir mail / backend
+                            entegrasyonu ekleyebilirsin.
+                        </p>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <footer>
+        <div>© <span id="year"></span> Anıl. Tüm hakları saklıdır.</div>
+        <div class="footer-meta">
+            <span>Bu site tek HTML dosyası olarak tasarlandı.</span>
+            <span>Performans &amp; sadelik odaklı.</span>
+        </div>
+    </footer>
+</div>
+
+<button class="scroll-top hidden" id="scrollTop" aria-label="Yukarı kaydır">
+    ↑
+</button>
+
+<script>
+    // Mobil menü
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    navToggle?.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+    });
+
+    navLinks?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+        });
+    });
+
+    // Yıl
+    document.getElementById('year').textContent = new Date().getFullYear().toString();
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scrollTop');
+    const toggleScrollBtn = () => {
+        if (window.scrollY > 260) {
+            scrollTopBtn.classList.remove('hidden');
+        } else {
+            scrollTopBtn.classList.add('hidden');
+        }
+    };
+    window.addEventListener('scroll', toggleScrollBtn);
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+</body>
+</html>
