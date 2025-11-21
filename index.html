@@ -995,6 +995,63 @@
   opacity: 0.12; /* efekt yoğunluğu */
   filter: blur(0.4px);
 }
+.project-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  border: 1px solid #e7e7e7;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(0, 157, 255, 0.18), rgba(0, 255, 190, 0.18));
+  opacity: 0;
+  transition: 0.4s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.project-card-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.project-card-tags {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.project-tag {
+  background: #f3f7ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: #0077ff;
+  border: 1px solid #d8e8ff;
+}
 
   </style>
 </head>
@@ -1148,37 +1205,41 @@
       </section>
 
       <!-- PROJELER -->
-     <section id="projects" class="section">
-  <h2 class="section-title">Projeler</h2>
-
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-icon">🌐</div>
-        <h3 class="project-title">Kişisel Web Sitesi</h3>
-      </div>
-
-      <p class="project-desc">
-        Modern, neon efektli, profesyonel görünümlü kişisel web sitem.  
-        Tamamen tek dosyalık HTML yapısıyla ultra hızlı açılan,  
-        responsive ve animasyonlu bir portföy deneyimi sunuyor.
-      </p>
-
-      <div class="project-tags">
-        <span>HTML</span>
-        <span>CSS</span>
-        <span>UI/UX</span>
-        <span>Frontend</span>
-      </div>
-
-      <div class="project-links">
-        <a href="https://anilyilmaz-gif.github.io/benimSitem/" target="_blank" class="project-btn">🌐 Siteyi Gör</a>
-        <a href="https://github.com/anilyilmaz-gif/benimSitem" target="_blank" class="project-btn-outline">📁 Kodları Gör</a>
-      </div>
-    </div>
-
+     <div class="project-card">
+  <div class="project-card-title">Kişisel Web Sitesi</div>
+  <div class="project-card-desc">
+    Modern tasarım, Matrix efektli arka plan, 3D hover animasyonları, SEO, sosyal etiketler ve çalışan iletişim formu içeren tam profesyonel kişisel portföy sitesi.
   </div>
+  <div class="project-card-tags">
+    <span class="project-tag">Web</span>
+    <span class="project-tag">Frontend</span>
+    <span class="project-tag">UI/UX</span>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-card-title">Metin2 PVP Sunucu</div>
+  <div class="project-card-desc">
+    Zor emek, dengeli ekonomi, düşük gecikme optimizasyonu ve temiz altyapı ile hazırlanmış PVP sunucu projesi.
+  </div>
+  <div class="project-card-tags">
+    <span class="project-tag">Game</span>
+    <span class="project-tag">Server</span>
+    <span class="project-tag">Config</span>
+  </div>
+</div>
+
+<div class="project-card">
+  <div class="project-card-title">Kod Araçları & Scriptler</div>
+  <div class="project-card-desc">
+    Sunucu yönetimi, log analizi ve otomasyon süreçlerine yardımcı küçük ama güçlü araçlar.
+  </div>
+  <div class="project-card-tags">
+    <span class="project-tag">Tools</span>
+    <span class="project-tag">Scripts</span>
+  </div>
+</div>
+
 </section>
 
     </div>
