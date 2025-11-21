@@ -877,9 +877,53 @@
                 padding-inline: 16px;
             }
         }
+		.animated-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(circle at top, #163056 0%, #05070b 40%, #02030a 100%);
+    overflow: hidden;
+}
+
+.animated-bg::before,
+.animated-bg::after {
+    content: "";
+    position: absolute;
+    width: 180%;
+    height: 180%;
+    top: -40%;
+    left: -40%;
+    background: repeating-linear-gradient(
+        120deg,
+        rgba(79, 140, 255, 0.07) 0px,
+        rgba(79, 140, 255, 0.07) 3px,
+        transparent 3px,
+        transparent 10px
+    );
+    animation: moveLines 18s linear infinite;
+    opacity: 0.55;
+    filter: blur(3px);
+}
+
+.animated-bg::after {
+    animation-duration: 30s;
+    opacity: 0.35;
+    transform: rotate(20deg);
+}
+
+@keyframes moveLines {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(-400px) rotate(8deg);
+    }
+}
+
     </style>
 </head>
 <body>
+<div class="animated-bg"></div>
 <div class="nav">
     <div class="nav-inner">
         <div class="nav-brand">
