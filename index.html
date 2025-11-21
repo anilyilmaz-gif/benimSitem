@@ -974,7 +974,17 @@
 .field textarea::placeholder {
   color: #cfcfcf;
 }
+/* FORM İÇİ YAZILAR GÖRÜNSÜN — KESİN ÇÖZÜM */
+.field input,
+.field textarea {
+  background: #1e1e1e !important;   /* koyu gri arkaplan */
+  color: #ffffff !important;        /* yazı beyaz */
+  border: 1px solid rgba(255,255,255,0.35);
+}
 
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #bbbbbb !important;  /* görünür gri placeholder */
   </style>
 </head>
 <body>
