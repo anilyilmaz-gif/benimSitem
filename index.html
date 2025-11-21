@@ -125,13 +125,17 @@
     }
 
     .nav-logo {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background-image: url('profile.jpg');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 0 0 2px #ffffff, 0 10px 18px rgba(37,99,235,0.35);
+      .nav-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background-image: url('logo.png'); /* Profil değil logo olacak */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 2px #ffffff, 0 10px 18px rgba(37,99,235,0.35);
+    flex-shrink: 0; /* ← EN ÖNEMLİ KISIM */
+}
+
     }
 
     .nav-title-main {
@@ -726,12 +730,7 @@
 <!-- NAVBAR -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo" style="
-  background-image: url('logo.png?v=2');
-  background-size: cover;
-  background-position: center;
-  border-radius: 10px;
-"></div>
+    <div class="nav-logo"></div>
 
       <div>
         <div class="nav-title-main">Anıl • Geliştirici</div>
