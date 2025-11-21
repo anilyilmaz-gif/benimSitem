@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>anilyilmaz yazılım geliştirme – Developer Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Geleceğe yönelik projeleriyle modern bir geliştirici. Oyun sunucuları, Metin2 PVP ve web geliştirme alanında çalışan developer portföyü." />
+  
+  <!-- SEO & Social -->
+  <meta property="og:title" content="anilyilmaz yazılım geliştirme" />
+  <meta property="og:description" content="Geleceğe yönelik projeleriyle modern bir geliştirici." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://anilyilmaz-gif.github.io/benimSitem/" />
+  <meta property="og:image" content="https://anilyilmaz-gif.github.io/benimSitem/logo.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="anilyilmaz yazılım geliştirme" />
+  <meta name="twitter:description" content="Geleceğe yönelik projeleriyle modern bir geliştirici." />
+  <meta name="twitter:image" content="https://anilyilmaz-gif.github.io/benimSitem/logo.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
+
+  <!-- Font (opsiyonel, varsa çalışır) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #050509;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* MATRIX BACKGROUND */
+    #matrix-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      width: 100%;
+      padding: 14px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5, 5, 10, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background-image: url('logo.png');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 12px rgba(79, 140, 255, 0.7);
+      flex-shrink: 0;
+    }
+
+    .nav-text-main {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .nav-text-sub {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      opacity: 0.8;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: #4f8cff;
+    }
+
+    /* LAYOUT BASE */
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .section {
+      margin-top: 70px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #ffffff, #4f8cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 26px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: rgba(10, 10, 20, 0.95);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 22px 22px 20px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ffffff, #4f8cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      font-size: 15px;
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      font-size: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #4f8cff, #7b6dff);
+      border-color: rgba(79, 140, 255, 0.8);
+      box-shadow: 0 0 18px rgba(79, 140, 255, 0.7);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.22);
+      color: #d8ddff;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .code-block {
+      margin-top: 10px;
+      font-family: monospace;
+      font-size: 13px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #9fe6ff;
+    }
+
+    .hero-profile {
+      width: 100%;
+      height: 260px;
+      border-radius: 18px;
+      background-image: url('profile.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.8),
+                  0 0 28px rgba(79, 140, 255, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    /* ABOUT */
+    .about-card p {
+      margin-bottom: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      opacity: 0.9;
+    }
+
+    .about-card strong {
+      color: #ffffff;
+    }
+
+    .about-goals {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border-left: 3px solid #4f8cff;
+      background: rgba(79, 140, 255, 0.12);
+      font-size: 13px;
+    }
+
+    .about-goals span {
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 6px;
+      color: #c9e4ff;
+    }
+
+    .about-goals ul {
+      padding-left: 18px;
+    }
+
+    .about-goals li {
+      margin-bottom: 4px;
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .skill-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(8, 8, 18, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(8px);
+      transition: 0.25s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 18px rgba(79, 140, 255, 0.4);
+      border-color: rgba(79, 140, 255, 0.7);
+    }
+
+    .skill-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .skill-icon {
+      font-size: 18px;
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4f8cff, #7b6dff);
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .project-card {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(10, 10, 20, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left,
+                  rgba(79, 140, 255, 0.2),
+                  transparent 60%);
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.9);
+      border-color: rgba(79, 140, 255, 0.8);
+    }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      opacity: 0.8;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .project-tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(5, 10, 25, 0.9);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 12px;
+    }
+
+    .project-btn,
+    .project-btn-outline {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(79, 140, 255, 0.8);
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .project-btn {
+      background: linear-gradient(90deg, #4f8cff, #7b6dff);
+      color: #fff;
+    }
+
+    .project-btn-outline {
+      background: transparent;
+      color: #b6d7ff;
+    }
+
+    .project-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .project-btn-outline:hover {
+      background: rgba(79, 140, 255, 0.2);
+    }
+
+    /* TOOLS */
+    .tools-list {
+      font-size: 14px;
+      opacity: 0.88;
+      line-height: 1.7;
+    }
+
+    .tools-list ul {
+      margin-top: 8px;
+      padding-left: 20px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
+      gap: 20px;
+      margin-top: 14px;
+    }
+
+    .contact-info {
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .contact-label {
+      font-size: 13px;
+      opacity: 0.7;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .contact-highlight {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .social-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(8, 12, 28, 0.96);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(8, 8, 18, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(5, 5, 14, 0.9);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #bbbbbb;
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .btn-send {
+      margin-top: 4px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(90deg, #4f8cff, #7b6dff);
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-send:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .nav-links {
+        display: none; /* basit çözüm: mobile için linkleri gizliyoruz; istersen açılır menü ekleriz */
+      }
+      .page-shell {
+        padding-inline: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix-bg"></canvas>
+
+<nav class="nav">
+  <div class="nav-left">
+    <div class="nav-logo"></div>
+    <div>
+      <div class="nav-text-main">Anıl Yılmaz</div>
+      <div class="nav-text-sub">Developer • Game Servers • Web</div>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#hero">Ana Sayfa</a>
+    <a href="#about">Hakkımda</a>
+    <a href="#skills">Yetenekler</a>
+    <a href="#projects">Projeler</a>
+    <a href="#tools">Kod Araçları</a>
+    <a href="#contact">İletişim</a>
+  </div>
+</nav>
+
+<div class="page-shell">
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="card">
+      <h1 class="hero-title">Merhaba, ben Anıl 👋</h1>
+      <p class="hero-text">
+        Oyun sunucuları (özellikle Metin2 PVP), web geliştirme ve otomasyon üzerine çalışan bir geliştiriciyim. 
+        Modern, stabil ve performans odaklı projeler üretmeyi seviyorum.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">Projeleri Gör</a>
+        <a href="#contact" class="btn-ghost">Benimle İletişime Geç</a>
+      </div>
+
+      <div class="code-block">
+        &gt; cd /anil/portfolio<br />
+        &gt; initialize --project<br />
+        &gt; status: <span style="color:#4fffca;">active</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hero-profile"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h2 class="section-title">Hakkımda</h2>
+    <div class="card about-card">
+      <p>
+        <strong>Oyun sunucuları, backend mantığı ve web otomasyon üzerine çalışan bir geliştiriciyim.</strong>
+        Metin2 PVP projeleri üzerinden altyapı, güvenlik, performans optimizasyonu ve oyuncu deneyimi geliştirme alanlarında 
+        uzun süredir kendimi geliştiriyorum.
+      </p>
+      <p>
+        Teknik olarak; oyun sunucu yapıları, sunucu yönetimi, veri işleme &amp; otomasyon, web geliştirme (HTML, CSS, temel JS), 
+        test ortamları ve VirtualBox/Windows sistemleri ile çalışıyorum.
+      </p>
+      <p>
+        Yeni teknolojileri öğrenmeyi, sistemlerin nasıl çalıştığını çözmeyi ve sıfırdan işleyen yapılar kurmayı severim. 
+        Kişisel projelerimde <strong>stabilite, performans ve temiz tasarım</strong> odağını benimsiyorum.
+      </p>
+      <div class="about-goals">
+        <span>🎯 Gelecek Hedefleri</span>
+        <ul>
+          <li>Daha profesyonel oyun &amp; web sistemleri geliştirmek</li>
+          <li>Modern otomasyon araçları ile backend çözümleri üretmek</li>
+          <li>Deneyimli ekiplerle büyük projelerde çalışmak</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h2 class="section-title">Yetenekler</h2>
+    <p class="section-sub">Teknik ve pratik olarak yoğunlaştığım alanlar:</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-info">
+          <span class="skill-icon">🎮</span>
+          <span class="skill-name">Metin2 PVP / Game Server</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="width: 85%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-info">
+          <span class="skill-icon">⚙️</span>
+          <span class="skill-name">Sunucu Yönetimi (Windows / VirtualBox)</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="width: 75%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-info">
+          <span class="skill-icon">💻</span>
+          <span class="skill-name">HTML / CSS</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="width: 60%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-info">
+          <span class="skill-icon">📊</span>
+          <span class="skill-name">Otomasyon &amp; Script Yazımı</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="width: 70%;"></div>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-info">
+          <span class="skill-icon">🔍</span>
+          <span class="skill-name">Araştırma &amp; Analiz</span>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-fill" style="width: 90%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <h2 class="section-title">Projeler</h2>
+    <p class="section-sub">Üzerinde çalıştığım veya benim için önemli olan projeler:</p>
+    <div class="projects-grid">
+      <!-- Kişisel Web Sitesi -->
+      <article class="project-card">
+        <h3 class="project-title">Kişisel Web Sitesi</h3>
+        <p class="project-desc">
+          Modern, Matrix efektli, Vercel tarzı tasarıma sahip, tek dosyalık profesyonel portföy sitesi. 
+          SEO, sosyal medya kartları, yetenek &amp; proje kartları ve çalışan iletişim formu içerir.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">UI/UX</span>
+        </div>
+        <div class="project-links">
+          <a class="project-btn" href="https://anilyilmaz-gif.github.io/benimSitem/" target="_blank">🌐 Siteyi Gör</a>
+          <a class="project-btn-outline" href="https://github.com/anilyilmaz-gif/benimSitem" target="_blank">📁 Kodları Gör</a>
+        </div>
+      </article>
+
+      <!-- Metin2 PVP -->
+      <article class="project-card">
+        <h3 class="project-title">Metin2 PVP Sunucu (Zor Emek)</h3>
+        <p class="project-desc">
+          Zor emek odaklı, dengeli ekonomi ve stabiliteye önem veren kişisel PVP sunucu projesi. 
+          VirtualBox üzerinde test ortamı, güvenlik ve performans ayarları içeriyor.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Game Server</span>
+          <span class="project-tag">Konfigürasyon</span>
+          <span class="project-tag">Deneme Ortamı</span>
+        </div>
+      </article>
+
+      <!-- Otomasyon Scriptleri -->
+      <article class="project-card">
+        <h3 class="project-title">Otomasyon &amp; Script Araçları</h3>
+        <p class="project-desc">
+          Sunucu yönetimi, log takibi, yedekleme ve temel veri analizi gibi işleri kolaylaştıran küçük, 
+          hedef odaklı araçlar ve scriptler.
+        </p>
+        <div class="project-tags">
+          <span class="project-tag">Automation</span>
+          <span class="project-tag">Tools</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools" class="section">
+    <h2 class="section-title">Kod Araçları</h2>
+    <div class="card tools-list">
+      <p>
+        Sunucu yönetimini, test süreçlerini ve bakım işlerini hızlandırmak için ufak ama işe yarar araçlar 
+        ve scriptler yazıyorum. Örneğin:
+      </p>
+      <ul>
+        <li>Basit log analiz scriptleri</li>
+        <li>Manual/otomatik yedekleme komutları</li>
+        <li>Server performansını gözlemlemek için küçük araçlar</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2 class="section-title">İletişim</h2>
+    <div class="card contact-grid">
+      <div class="contact-info">
+        <span class="contact-label">E-posta</span>
+        <span class="contact-highlight">Oyuncubaba2709@gmail.com</span>
+        <p style="margin-top:8px;">
+          Proje konuşmak, fikir danışmak veya sadece sohbet etmek istersen e-posta gönderebilir 
+          veya aşağıdaki formu kullanabilirsin.
+        </p>
+        <div class="social-links">
+          <span class="social-chip">GitHub (eklenecek)</span>
+          <span class="social-chip">Discord (eklenecek)</span>
+          <span class="social-chip">X / Twitter (eklenecek)</span>
+        </div>
+      </div>
+
+      <form class="contact-form"
+            action="https://formsubmit.co/Oyuncubaba2709@gmail.com"
+            method="POST">
+        <!-- FormSubmit ayarları -->
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="Yeni mesaj - anilyilmaz portföy">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="field">
+          <input id="name" name="name" type="text" required placeholder="Adın" />
+        </div>
+
+        <div class="field">
+          <input id="email" name="email" type="email" required placeholder="E-posta adresin" />
+        </div>
+
+        <div class="field">
+          <textarea id="message" name="message" required placeholder="Mesajın..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-send">Gönder</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Anıl Yılmaz — Tüm hakları saklıdır.
+  </footer>
+</div>
+
+<script>
+  // Matrix background
+  const canvas = document.getElementById('matrix-bg');
+  const ctx = canvas.getContext('2d');
+
+  function resizeMatrix() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeMatrix();
+
+  const letters = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const matrixLetters = letters.split('');
+  const fontSize = 14;
+  let columns = canvas.width / fontSize;
+  let drops = Array(Math.floor(columns)).fill(1);
+
+  function drawMatrix() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#4f8cff';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+      const text = matrixLetters[Math.floor(Math.random() * matrixLetters.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+      ctx.fillText(text, x, y);
+
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  setInterval(drawMatrix, 40);
+
+  window.addEventListener('resize', () => {
+    resizeMatrix();
+    columns = canvas.width / fontSize;
+    drops = Array(Math.floor(columns)).fill(1);
+  });
+
+  // Yıl
+  document.getElementById('year').textContent = new Date().getFullYear().toString();
+</script>
+
+</body>
+</html>
