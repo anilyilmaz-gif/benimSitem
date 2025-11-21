@@ -208,6 +208,62 @@ nav {
         height: 260px;
     }
 }
+.section {
+  margin-top: 80px;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #4dc9ff, #b37bff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.about-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 24px;
+  border-radius: 12px;
+  line-height: 1.7;
+  color: #ddd;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.about-card p {
+  margin-bottom: 16px;
+}
+
+.about-card strong {
+  color: #ffffff;
+}
+
+.about-goals {
+  margin-top: 20px;
+  background: rgba(0, 157, 255, 0.06);
+  border-left: 3px solid #00aaff;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.about-goals span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #5ecbff;
+}
+
+.about-goals ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.about-goals li {
+  margin-bottom: 6px;
+  color: #d8ecff;
+}
+
 </style>
 </head>
 
@@ -254,12 +310,36 @@ nav {
 
 <!-- ABOUT -->
 <section id="hakkimda" class="section">
-    <div class="section-title">Hakkımda</div>
-    <p class="section-text">
-        Sunucu sistemleri, oyun geliştirme altyapısı ve modern web arayüzleri ile ilgileniyorum.
-        Kendimi sürekli geliştirmeye odaklı, üretmeyi seven bir geliştiriciyim.
+  <h2 class="section-title">Hakkımda</h2>
+
+  <div class="about-card">
+    <p>
+      <strong>Oyun sunucuları, backend mantığı ve web otomasyon üzerine çalışan bir geliştiriciyim.</strong>
+      Metin2 PVP projeleri üzerinden altyapı, güvenlik, performans optimizasyonu ve oyuncu deneyimi 
+      geliştirme alanlarında uzun süredir çalışıyorum.
     </p>
+
+    <p>
+      Teknik olarak; oyun sunucu yapıları, sunucu yönetimi, veri işleme &amp; otomasyon, web geliştirme 
+      (HTML, CSS, JS), test ortamları ve VirtualBox/Windows sistemleri üzerine aktif olarak kendimi geliştirmeye devam ediyorum.
+    </p>
+
+    <p>
+      Yeni teknolojileri öğrenmeyi, sistemlerin nasıl çalıştığını çözmeyi ve sıfırdan işleyen yapılar kurmayı severim. 
+      Kişisel projelerimde <strong>stabilite, performans ve temiz tasarım</strong> odağını benimsiyorum.
+    </p>
+
+    <div class="about-goals">
+      <span>🎯 Gelecek Hedefleri</span>
+      <ul>
+        <li>Daha profesyonel oyun &amp; web sistemleri geliştirmek</li>
+        <li>Modern otomasyon araçları ile backend çözümleri üretmek</li>
+        <li>Deneyimli ekiplerle büyük projelerde çalışmak</li>
+      </ul>
+    </div>
+  </div>
 </section>
+
 
 <!-- PROJECTS -->
 <section id="projeler" class="section">
