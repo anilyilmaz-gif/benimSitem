@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anıl Yılmaz — Developer Portfolio</title>
+
+<!-- SEO -->
+<meta name="description" content="Professional Developer Portfolio — Anıl Yılmaz">
+<meta property="og:title" content="Anıl Yılmaz — Developer Portfolio">
+<meta property="og:description" content="Geliştirici · Oyun Sunucuları · Web · Yazılım">
+<meta property="og:image" content="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://anilyilmaz-gif.github.io/benimSitem/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+/* GLOBAL */
+* {margin: 0; padding: 0; box-sizing: border-box;}
+body {
+    background: #0c0c0c;
+    font-family: 'Inter', sans-serif;
+    color: #e6e6e6;
+    overflow-x: hidden;
+}
+
+/* SMOOTH SCROLL */
+html { scroll-behavior: smooth; }
+
+/* NAVBAR (Glass Effect) */
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    z-index: 10;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.nav-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-image: url('logo.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 14px rgba(0,123,255,0.55);
+    flex-shrink: 0;
+}
+
+.nav-title-main {
+    font-size: 16px;
+    font-weight: 700;
+}
+.nav-title-sub {
+    font-size: 13px;
+    opacity: .7;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+}
+.nav-links a {
+    text-decoration: none;
+    color: #e6e6e6;
+    font-size: 15px;
+    opacity: .85;
+    transition: .2s;
+}
+.nav-links a:hover {
+    opacity: 1;
+    color: #4f8cff;
+}
+
+/* HERO */
+.hero {
+    max-width: 1250px;
+    margin: 80px auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* HERO LEFT */
+.hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff, #4f8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+    margin-top: 20px;
+    font-size: 17px;
+    opacity: .75;
+    line-height: 1.6;
+}
+
+/* CODE BLOCK */
+.code-block {
+    background: rgba(255,255,255,0.05);
+    padding: 18px 20px;
+    margin-top: 28px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+    font-family: monospace;
+    font-size: 14px;
+    color: #4f8cff;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.4);
+}
+
+/* PROFILE CARD */
+.profile-box {
+    width: 100%;
+    height: 330px;
+    border-radius: 18px;
+    background-image: url('profile.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 22px rgba(79,140,255,0.35), 0 0 60px rgba(0,0,0,0.8);
+}
+
+/* SECTIONS */
+.section {
+    max-width: 1250px;
+    padding: 0 32px;
+    margin: 80px auto 0;
+}
+
+.section-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(90deg, #fff, #4f8cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-text {
+    font-size: 16px;
+    opacity: .75;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* PROJECT CARDS */
+.project-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+}
+
+.project-card {
+    padding: 18px;
+    border-radius: 14px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: .25s;
+}
+.project-card:hover {
+    border-color: #4f8cff;
+    box-shadow: 0 0 20px rgba(79,140,255,0.3);
+    transform: translateY(-4px);
+}
+
+.project-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+.project-desc {
+    font-size: 14px;
+    opacity: .65;
+}
+
+/* MATRIX BACKGROUND */
+#matrix-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.15;
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px){
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .profile-box {
+        height: 260px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MATRIX BACKGROUND -->
+<canvas id="matrix-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-brand">
+        <div class="nav-logo"></div>
+        <div>
+            <div class="nav-title-main">Anıl Yılmaz</div>
+            <div class="nav-title-sub">Developer • Game Servers • Web</div>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="#hakkimda">Hakkımda</a>
+        <a href="#projeler">Projeler</a>
+        <a href="#iletisim">İletişim</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div>
+        <h1 class="hero-title">Merhaba, ben Anıl 👋</h1>
+        <p class="hero-sub">
+            Oyun sunucuları (Metin2), web geliştirme ve otomasyon üzerine çalışan bir geliştiriciyim.
+            Modern, hızlı ve güçlü projeler üretmeyi seviyorum.
+        </p>
+
+        <div class="code-block">
+            > cd /anil/portfolio  
+            <br>> initialize --project  
+            <br>> status: <span style="color:#4fffca;">active</span>
+        </div>
+    </div>
+
+    <div class="profile-box"></div>
+</section>
+
+<!-- ABOUT -->
+<section id="hakkimda" class="section">
+    <div class="section-title">Hakkımda</div>
+    <p class="section-text">
+        Sunucu sistemleri, oyun geliştirme altyapısı ve modern web arayüzleri ile ilgileniyorum.
+        Kendimi sürekli geliştirmeye odaklı, üretmeyi seven bir geliştiriciyim.
+    </p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projeler" class="section">
+    <div class="section-title">Projeler</div>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <div class="project-title">Metin2 PVP Sunucu</div>
+            <div class="project-desc">Zor emek – optimize edilmiş oyun sunucusu.</div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-title">Kişisel Web Portföyü</div>
+            <div class="project-desc">Tek dosyalık, şık ve animasyonlu web sitesi.</div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-title">Otomasyon Scriptleri</div>
+            <div class="project-desc">Yedekleme, log, analiz araçları.</div>
+        </div>
+    </div>
+</section>
+
+<script>
+/* MATRIX EFFECT */
+const canvas = document.getElementById("matrix-canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+const chars = "01";
+const fontSize = 14;
+const cols = canvas.width / fontSize;
+
+const drops = Array(Math.floor(cols)).fill(1);
+
+function draw(){
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle = "#4f8cff";
+    ctx.font = fontSize + "px monospace";
+
+    drops.forEach((y,i)=>{
+        const text = chars[Math.floor(Math.random()*chars.length)];
+        const x = i * fontSize;
+        ctx.fillText(text,x,y*fontSize);
+
+        if(y*fontSize > canvas.height && Math.random() > 0.98){ drops[i] = 0; }
+        drops[i]++;
+    });
+}
+setInterval(draw,40);
+</script>
+
+</body>
+</html>
