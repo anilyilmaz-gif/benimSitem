@@ -863,6 +863,47 @@
   font-size: 34px;
   color: white;
 }
+.gallery-section {
+    margin-top: 80px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.gallery-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+.gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    border-color: rgba(59, 130, 246, 0.6);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 150px;
+    background-size: cover;
+    background-position: center;
+}
+
+.gallery-info {
+    padding: 14px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+}
 
   </style>
 </head>
@@ -1159,50 +1200,45 @@
   </section>
 
   <!-- EDUCATION -->
-  <section id="gallery" class="card">
-  <h2>Galeri</h2>
-  <p>Minimal soft UI görüntüleri placeholder olarak kullanılmıştır.</p>
+ <section class="gallery-section" id="gallery">
+    <h2 class="section-title">Galeri</h2>
+    <p class="section-desc">Projelerimden, sistem geliştirmeden ve oyun geliştirmeden örnek çalışmalar.</p>
 
-  <div class="slider-container">
-    <div class="slider-track" id="sliderTrack">
+    <div class="gallery-grid">
 
-      <!-- SLIDER ITEM 1 -->
-      <div class="slider-item">
-        <img src="https://picsum.photos/seed/ui1/700/500" alt="Placeholder 1" class="lightbox-trigger">
-      </div>
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=1');"></div>
+            <div class="gallery-info">Metin2 Sunucu</div>
+        </div>
 
-      <!-- SLIDER ITEM 2 -->
-      <div class="slider-item">
-        <img src="https://picsum.photos/seed/ui2/700/500" alt="Placeholder 2" class="lightbox-trigger">
-      </div>
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=2');"></div>
+            <div class="gallery-info">Dashboard Tasarımı</div>
+        </div>
 
-      <!-- SLIDER ITEM 3 -->
-      <div class="slider-item">
-        <img src="https://picsum.photos/seed/ui3/700/500" alt="Placeholder 3" class="lightbox-trigger">
-      </div>
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=3');"></div>
+            <div class="gallery-info">Kod Projesi</div>
+        </div>
 
-      <!-- SLIDER ITEM 4 -->
-      <div class="slider-item">
-        <img src="https://picsum.photos/seed/ui4/700/500" alt="Placeholder 4" class="lightbox-trigger">
-      </div>
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=4');"></div>
+            <div class="gallery-info">VirtualBox</div>
+        </div>
 
-      <!-- SLIDER ITEM 5 -->
-      <div class="slider-item">
-        <img src="https://picsum.photos/seed/ui5/700/500" alt="Placeholder 5" class="lightbox-trigger">
-      </div>
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=5');"></div>
+            <div class="gallery-info">Script Aracı</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img" style="background-image: url('https://picsum.photos/400?random=6');"></div>
+            <div class="gallery-info">UI Tasarımı</div>
+        </div>
 
     </div>
+</section>
 
-    <!-- Oklar -->
-    <div class="slider-btn left" id="slideLeft">‹</div>
-    <div class="slider-btn right" id="slideRight">›</div>
-  </div>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">×</span>
-    <img id="lightboxImg" src="" alt="">
-  </div>
 
 </section>
 
