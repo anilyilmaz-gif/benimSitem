@@ -560,6 +560,116 @@
         padding-inline: 16px;
       }
     }
+	/* --- Araçlar Bölümü Kart Tasarımı --- */
+.tools-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin-top: 20px;
+}
+
+.tool-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.tool-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.tool-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #0077ff, #00c9ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.tool-title {
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.tool-desc {
+  font-size: 13px;
+  color: #444;
+  line-height: 1.45;
+}
+
+/* --- Giriş Animasyonları --- */
+.fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* --- Deneyim Zaman Çizgisi --- */
+.timeline {
+  position: relative;
+  margin-top: 25px;
+  padding-left: 26px;
+  border-left: 2px solid rgba(0,0,0,0.12);
+}
+
+.timeline-item {
+  margin-bottom: 28px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s ease;
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #0077ff;
+  border: 2px solid white;
+  position: absolute;
+  left: -7px;
+  top: 3px;
+  box-shadow: 0 0 8px rgba(0,119,255,0.6);
+}
+
+.timeline-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-date {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  font-size: 13px;
+  color: #333;
+  line-height: 1.45;
+}
+
+
   </style>
 </head>
 <body>
@@ -697,6 +807,165 @@
     <h2 class="section-title">Projeler</h2>
     <p class="section-sub">Üzerinde çalıştığım veya benim için önemli olan projeler:</p>
     <div class="projects-grid">
+	<article class="project-card">
+  <h3 class="project-title">Oyun Patch & Sistem Geliştirme</h3>
+  <p class="project-desc">
+    Metin2 sunucuları için özel sistemler, patch düzenlemeleri, tip kontrol,
+    item değişiklikleri ve stabilite artırıcı yapısal düzenlemeler.
+  </p>
+  <div class="project-tags">
+    <span class="project-tag">Game Dev</span>
+    <span class="project-tag">Patch</span>
+    <span class="project-tag">System</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Admin Panel / Dashboard Tasarımı</h3>
+  <p class="project-desc">
+    Sunucular için yönetim panelleri, kullanıcı takip ekranları, log analizi
+    ve modern UI/UX prensipleri ile oluşturulmuş dashboard tasarımları.
+  </p>
+  <div class="project-tags">
+    <span class="project-tag">UI/UX</span>
+    <span class="project-tag">Admin Panel</span>
+    <span class="project-tag">Dashboard</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Discord & Telegram Botları</h3>
+  <p class="project-desc">
+    Sunucu yönetimi, otomatik kontrol, kullanıcı mesaj yönetimi ve log aktarım
+    gibi görevleri yapan kişisel bot projeleri.
+  </p>
+  <div class="project-tags">
+    <span class="project-tag">Bot</span>
+    <span class="project-tag">Automation</span>
+    <span class="project-tag">Notifications</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Metin2 PVP – Zor Emek Sunucu</h3>
+  <p class="project-desc">Optimize edilmiş oyun ekonomisi, modüler yapı, temiz client düzeni, anti-lag iyileştirmeleri.</p>
+  <div class="project-tags">
+    <span class="project-tag">Game Server</span>
+    <span class="project-tag">PVP</span>
+    <span class="project-tag">System</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Oyun Patch & Anti-Cheat Sistemi</h3>
+  <p class="project-desc">Sunucu güvenliğini artıran patch sistemleri, cheat önleme modülleri ve dosya bütünlüğü kontrolü.</p>
+  <div class="project-tags">
+    <span class="project-tag">Security</span>
+    <span class="project-tag">Patch</span>
+    <span class="project-tag">Protection</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Metin2 Sistem Geliştirme</h3>
+  <p class="project-desc">Görev sistemi, item dropları, raid düzenlemeleri ve bölge dengelemeleri.</p>
+  <div class="project-tags">
+    <span class="project-tag">Game Design</span>
+    <span class="project-tag">Balance</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Kişisel Portföy Sitesi</h3>
+  <p class="project-desc">Tamamen tek dosya, ultra hızlı, SEO uyumlu kişisel portföy tasarımı.</p>
+  <div class="project-tags">
+    <span class="project-tag">Web</span>
+    <span class="project-tag">Portfolio</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Admin Panel Arayüzü</h3>
+  <p class="project-desc">Modern yönetim paneli tasarımı, ikonlu menüler, responsive arayüz.</p>
+  <div class="project-tags">
+    <span class="project-tag">UI/UX</span>
+    <span class="project-tag">Dashboard</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Landing Page – Ürün Tanıtım</h3>
+  <p class="project-desc">Minimal ve dönüşüm odaklı ürün tanıtım sayfası tasarımı.</p>
+  <div class="project-tags">
+    <span class="project-tag">Landing</span>
+    <span class="project-tag">Marketing</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Sunucu Temizlik & Log Yönetimi</h3>
+  <p class="project-desc">Otomatik log temizleme, disk boşaltma ve bakım scriptleri.</p>
+  <div class="project-tags">
+    <span class="project-tag">Automation</span>
+    <span class="project-tag">Maintenance</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">CPU / RAM Optimizasyon Scriptleri</h3>
+  <p class="project-desc">Performans artışı için cache temizliği, servis resetleme scriptleri.</p>
+  <div class="project-tags">
+    <span class="project-tag">Optimization</span>
+    <span class="project-tag">Scripts</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Discord Yönetim Botu</h3>
+  <p class="project-desc">Sunucu yönetimi, otomatik rol dağıtımı, mesaj loglama.</p>
+  <div class="project-tags">
+    <span class="project-tag">Bot</span>
+    <span class="project-tag">Automation</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">AI Sorucevap Sistemi</h3>
+  <p class="project-desc">Yerel model ile kişisel bilgi tabanı destekli soru cevap sistemi.</p>
+  <div class="project-tags">
+    <span class="project-tag">AI</span>
+    <span class="project-tag">NLP</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Mobil Not & Görev Uygulaması</h3>
+  <p class="project-desc">Basit görev yönetimi, kategori sistemi, offline destek.</p>
+  <div class="project-tags">
+    <span class="project-tag">Mobile</span>
+    <span class="project-tag">Productivity</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Mini Oyun – Reflex Testi</h3>
+  <p class="project-desc">Refleks ölçüm testleri, hız puanı hesaplama sistemi.</p>
+  <div class="project-tags">
+    <span class="project-tag">Game</span>
+    <span class="project-tag">Mobile</span>
+  </div>
+</article>
+<article class="project-card">
+  <h3 class="project-title">Firewall Log Analiz Sistemi</h3>
+  <p class="project-desc">Güvenlik duvarı hareketlerini kategorize eden analiz aracı.</p>
+  <div class="project-tags">
+    <span class="project-tag">Security</span>
+    <span class="project-tag">Analysis</span>
+  </div>
+</article>
+
+<article class="project-card">
+  <h3 class="project-title">Brute Force Koruma Scripti</h3>
+  <p class="project-desc">SSH giriş denemelerini filtreleyen anti-bruteforce modülü.</p>
+  <div class="project-tags">
+    <span class="project-tag">Security</span>
+    <span class="project-tag">Protection</span>
+  </div>
+</article>
+
       <!-- Kişisel Web Sitesi -->
       <article class="project-card">
         <h3 class="project-title">Kişisel Web Sitesi</h3>
@@ -758,6 +1027,63 @@
         <li>Server performansını gözlemlemek için küçük araçlar</li>
       </ul>
     </div>
+	<section id="tools" class="card">
+  <h2>Kod Araçları</h2>
+  <p>Geliştirme sırasında kullandığım mini scriptler ve yardımcı araçlar.</p>
+
+  <div class="tools-grid">
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">⚙️</div>
+      <div class="tool-title">Sunucu Reset Scripti</div>
+      <div class="tool-desc">
+        Sunucu servislerini modüler olarak yeniden başlatmak için otomatik komut dizisi.
+      </div>
+    </div>
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">🧹</div>
+      <div class="tool-title">Log Temizleme Aracı</div>
+      <div class="tool-desc">
+        Disk kullanımını azaltmak için günlük log dosyalarını otomatik olarak siler.
+      </div>
+    </div>
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">🚀</div>
+      <div class="tool-title">Oyun Patch Araçları</div>
+      <div class="tool-desc">
+        Client içindeki hatalı dosyaları tarayan ve patch optimizasyonu yapan mini araç.
+      </div>
+    </div>
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">🔍</div>
+      <div class="tool-title">Port / Bağlantı Kontrol</div>
+      <div class="tool-desc">
+        Sunucu açık portlarını tarar, bağlantı sorunlarını hızlıca tespit eder.
+      </div>
+    </div>
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">💾</div>
+      <div class="tool-title">Yedekleme Scripti</div>
+      <div class="tool-desc">
+        Sunucu dosyalarını belirli aralıklarla otomatik yedekleyen cron aracı.
+      </div>
+    </div>
+
+    <div class="tool-card fade-up">
+      <div class="tool-icon">🧪</div>
+      <div class="tool-title">HTML / CSS Test Aracı</div>
+      <div class="tool-desc">
+        Ön yüz geliştirme için hızlı deneme alanı oluşturan script.
+      </div>
+    </div>
+
+  </div>
+</section>
+
   </section>
 
   <!-- CONTACT -->
@@ -855,6 +1181,17 @@
 
   // Yıl
   document.getElementById('year').textContent = new Date().getFullYear().toString();
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const fadeItems = document.querySelectorAll('.fade-up');
+  fadeItems.forEach((el, i) => {
+    setTimeout(() => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }, i * 120);
+  });
+});
 </script>
 
 </body>
