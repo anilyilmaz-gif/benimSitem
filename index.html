@@ -904,6 +904,42 @@
     font-weight: 500;
     text-align: center;
 }
+.footer {
+    width: 100%;
+    margin-top: 60px;
+    padding: 25px 0;
+    backdrop-filter: blur(24px);
+    background: rgba(255, 255, 255, 0.04);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-inner {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: #d0d0d0;
+    font-size: 14px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 14px;
+}
+
+.social-icon {
+    font-size: 20px;
+    color: #bfbfbf;
+    transition: 0.25s ease;
+}
+
+.social-icon:hover {
+    color: #5db8ff;
+    text-shadow: 0 0 8px #5db8ff;
+    transform: translateY(-2px);
+}
 
   </style>
 </head>
@@ -1335,49 +1371,63 @@
 </div>
 
 <script>
-  // Matrix background
-  const canvas = document.getElementById('matrix-bg');
-  const ctx = canvas.getContext('2d');
+<footer class="footer">
+  <div class="footer-inner">
+    <p>© 2025 Anıl Yılmaz — Geliştirici & Oyun Sunucuları • Web</p>
 
-  function resizeMatrix() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeMatrix();
+    <div class="footer-social">
+      <a href="https://github.com/anilyilmaz-gif" target="_blank" class="social-icon github">
+        <i class="fa-brands fa-github"></i>
+      </a>
 
-  const letters = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const matrixLetters = letters.split('');
-  const fontSize = 14;
-  let columns = canvas.width / fontSize;
-  let drops = Array(Math.floor(columns)).fill(1);
+      <a href="#" target="_blank" class="social-icon discord">
+        <i class="fa-brands fa-discord"></i>
+      </a>
 
-  function drawMatrix() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.07)';
+      <a href="#" target="_blank" class="social-icon twitter">
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = "ABCDEFGHIJKLMNOPQRSTUVXYZ1234567890/*-+=<>[]{}";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+
+let drops = [];
+for (let i = 0; i < columns; i++) drops[i] = 1;
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.07)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = '#4f8cff';
-    ctx.font = fontSize + 'px monospace';
+    ctx.fillStyle = "#4bb8ff";
+    ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
-      const text = matrixLetters[Math.floor(Math.random() * matrixLetters.length)];
-      const x = i * fontSize;
-      const y = drops[i] * fontSize;
-      ctx.fillText(text, x, y);
+        const char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
-      if (y > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
     }
-  }
+}
 
-  setInterval(drawMatrix, 40);
+setInterval(draw, 35);
 
-  window.addEventListener('resize', () => {
-    resizeMatrix();
-    columns = canvas.width / fontSize;
-    drops = Array(Math.floor(columns)).fill(1);
-  });
+window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
 
   // Fade-up on scroll
   const fadeEls = document.querySelectorAll('.fade-up, .tool-card, .edu-card, .gallery-item');
