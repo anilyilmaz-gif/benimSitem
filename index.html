@@ -767,6 +767,103 @@
         padding-inline: 16px;
       }
     }
+	/* --- Slider Konteyneri --- */
+.slider-container {
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 16px;
+}
+
+/* Slider içi */
+.slider-track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.4s ease;
+}
+
+/* Her kart */
+.slider-item {
+  min-width: 260px;
+  height: 180px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f5f5f5;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.slider-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.35s ease;
+}
+
+.slider-item:hover img {
+  transform: scale(1.05);
+  filter: brightness(0.85);
+}
+
+/* Ok butonları */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.15);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.slider-btn:hover {
+  background: white;
+}
+
+.slider-btn.left { left: 10px; }
+.slider-btn.right { right: 10px; }
+
+/* --- Lightbox (Tam ekran) --- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+/* Kapatma butonu */
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  cursor: pointer;
+  font-size: 34px;
+  color: white;
+}
+
   </style>
 </head>
 <body>
@@ -1062,6 +1159,53 @@
   </section>
 
   <!-- EDUCATION -->
+  <section id="gallery" class="card">
+  <h2>Galeri</h2>
+  <p>Minimal soft UI görüntüleri placeholder olarak kullanılmıştır.</p>
+
+  <div class="slider-container">
+    <div class="slider-track" id="sliderTrack">
+
+      <!-- SLIDER ITEM 1 -->
+      <div class="slider-item">
+        <img src="https://picsum.photos/seed/ui1/700/500" alt="Placeholder 1" class="lightbox-trigger">
+      </div>
+
+      <!-- SLIDER ITEM 2 -->
+      <div class="slider-item">
+        <img src="https://picsum.photos/seed/ui2/700/500" alt="Placeholder 2" class="lightbox-trigger">
+      </div>
+
+      <!-- SLIDER ITEM 3 -->
+      <div class="slider-item">
+        <img src="https://picsum.photos/seed/ui3/700/500" alt="Placeholder 3" class="lightbox-trigger">
+      </div>
+
+      <!-- SLIDER ITEM 4 -->
+      <div class="slider-item">
+        <img src="https://picsum.photos/seed/ui4/700/500" alt="Placeholder 4" class="lightbox-trigger">
+      </div>
+
+      <!-- SLIDER ITEM 5 -->
+      <div class="slider-item">
+        <img src="https://picsum.photos/seed/ui5/700/500" alt="Placeholder 5" class="lightbox-trigger">
+      </div>
+
+    </div>
+
+    <!-- Oklar -->
+    <div class="slider-btn left" id="slideLeft">‹</div>
+    <div class="slider-btn right" id="slideRight">›</div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">×</span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+</section>
+
   <section id="education" class="section">
     <h2 class="section-title">Eğitim &amp; Sertifikalar</h2>
     <p class="section-sub">Öğrenme sürecimi şekillendiren eğitimler ve hedeflediğim sertifikalar.</p>
@@ -1266,6 +1410,46 @@
 
   // Yıl
   document.getElementById('year').textContent = new Date().getFullYear().toString();
+</script>
+<script>
+// SLIDER
+let track = document.getElementById("sliderTrack");
+let leftBtn = document.getElementById("slideLeft");
+let rightBtn = document.getElementById("slideRight");
+
+let position = 0;
+
+rightBtn.onclick = () => {
+  position -= 280;
+  track.style.transform = `translateX(${position}px)`;
+}
+
+leftBtn.onclick = () => {
+  position += 280;
+  track.style.transform = `translateX(${position}px)`;
+}
+
+// LIGHTBOX
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxClose = document.getElementById("lightboxClose");
+
+document.querySelectorAll(".lightbox-trigger").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.classList.add("active");
+    lightboxImg.src = img.src;
+  });
+});
+
+lightboxClose.onclick = () => {
+  lightbox.classList.remove("active");
+};
+
+lightbox.onclick = (e) => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove("active");
+  }
+};
 </script>
 
 </body>
